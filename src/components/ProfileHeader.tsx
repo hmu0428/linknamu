@@ -2,8 +2,8 @@ import { Profile } from "@/types";
 
 export function ProfileHeader({ profile }: { profile: Profile }) {
   return (
-    <div className="flex flex-col items-center gap-3 text-center">
-      <div className="h-24 w-24 overflow-hidden rounded-full ring-1 ring-black/10 dark:ring-white/10">
+    <div className="flex flex-col items-center gap-4 text-center">
+      <div className="h-28 w-28 overflow-hidden rounded-full shadow-[0_12px_30px_-8px_rgba(194,110,50,0.45)] ring-4 ring-white/80 dark:ring-white/10 dark:shadow-[0_12px_30px_-8px_rgba(0,0,0,0.6)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={profile.avatarUrl}
@@ -11,9 +11,9 @@ export function ProfileHeader({ profile }: { profile: Profile }) {
           className="h-full w-full object-cover"
         />
       </div>
-      <div>
-        <h1 className="text-lg font-semibold">{profile.name}</h1>
-        <p className="text-sm opacity-60">{profile.bio}</p>
+      <div className="flex flex-col gap-1.5">
+        <h1 className="text-xl font-bold tracking-tight">{profile.name}</h1>
+        <p className="text-sm text-foreground/70">{profile.bio}</p>
       </div>
     </div>
   );

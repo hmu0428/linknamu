@@ -3,6 +3,8 @@
 import { LinkItem } from "@/types";
 
 export function LinkCard({ link }: { link: LinkItem }) {
+  const isExternalPage = /^https?:\/\//.test(link.url);
+
   const handleClick = () => {
     fetch("/api/links/click", {
       method: "POST",
@@ -17,10 +19,10 @@ export function LinkCard({ link }: { link: LinkItem }) {
   return (
     <a
       href={link.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={isExternalPage ? "_blank" : undefined}
+      rel={isExternalPage ? "noopener noreferrer" : undefined}
       onClick={handleClick}
-      className="block w-full rounded-xl border border-black/10 bg-white px-5 py-4 text-center text-sm font-medium shadow-sm transition-colors hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+      className="block w-full rounded-2xl border border-card-border bg-card px-5 py-4 text-center text-sm font-medium text-foreground shadow-[0_4px_20px_-6px_rgba(120,70,30,0.15)] backdrop-blur-md backdrop-saturate-150 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-[0_8px_24px_-6px_rgba(120,70,30,0.22)] dark:shadow-[0_4px_20px_-6px_rgba(0,0,0,0.4)] dark:hover:bg-white/10"
     >
       {link.label}
     </a>
